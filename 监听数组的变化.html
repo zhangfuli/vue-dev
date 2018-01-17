@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监听数组的变化</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let list = ['1', '2', '3'] 
+	class MyArray extends Array{
+		push(...args){
+			console.log(args[0])
+		}
+	}
+	let myArr = new MyArray(...list)
+	myArr.push(4)
+	myArr.reverse()
+	console.log(myArr)
+</script>
+</html>

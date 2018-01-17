@@ -1,0 +1,5 @@
+1.vue中数据状态改变后会采用virtualDOM的方式更新DOM,virtualDOM分为3个步骤
+a.createElement():用js对象(虚拟树)描述真实DOM对象(真实树)
+b.diff(oldNode, newNode):对比新旧两个虚拟树的区别,收集差异
+c.patch():将差异应用到真实DOM树
+2.npm run test,test在package.json的script中定义

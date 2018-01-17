@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监听一个对象的变化</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let data = {
+		user: {
+			name: "zfl",
+			age: 24
+		},
+		address: {
+			city: "qd" 
+		}
+	}
+
+	function Observer(data){
+		this.data = data
+		this.walk(data)
+	}
+
+	Observer.prototype = {
+		walk: function(obj){
+			let val
+			for(let key in obj){
+				console.log(key)
+				if(obj.hasOwnProperty(key)){
+					val = obj[key]
+
+					if(typeof val == Object){
+						new Observer(val)
+					}
+
+					this.watch(key, val)
+				}
+			}
+		},
+		watch: function(key, val){
+			Object.defineProperty(this.data, key, {
+		        enumerable: true,
+		        configurable: true,
+		        get: function (){
+		            console.log('你访问了' + key)
+		            return val
+		        },
+		        set: function (newVal){
+		            console.log('你设置了' + key)
+		            console.log('新的' + key + ' = ' + newVal)
+		            val = newVal
+		        }
+		    })
+
+		}
+	}
+
+	let app = new Observer(data)
+</script>
+</html>
